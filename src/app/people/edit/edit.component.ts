@@ -15,7 +15,7 @@ export class EditComponent implements OnInit{
   constructor(private personService: PersonService, private personDataService: PersonDataService) { }
 
   ngOnInit(): void {
-
+    this.person = new Person();
   }
 
   onSubmit(){

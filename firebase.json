@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "angular15-crud-login",
+    "public": "dist/angular15-crud-login",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
