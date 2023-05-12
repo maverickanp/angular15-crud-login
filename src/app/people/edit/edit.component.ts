@@ -3,8 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Person } from '../shared/person';
 import { PersonService } from '../shared/person.service';
 import { PersonDataService } from '../shared/person-data.service';
-import { ActivatedRoute, ParamMap  } from '@angular/router'
-
+import { ActivatedRoute, ParamMap, Router  } from '@angular/router'
 
 @Component({
   selector: 'app-edit',
@@ -28,7 +27,12 @@ private fb: FormBuilder  = new FormBuilder();
   };
   key: string = '';
 
-  constructor(private personService: PersonService, private personDataService: PersonDataService,private route: ActivatedRoute) { }
+  constructor(
+    private personService: PersonService,
+    private personDataService: PersonDataService,
+    private route: ActivatedRoute,
+    private router: Router
+    ) { }
 
 
   ngOnInit(): void {
@@ -62,6 +66,7 @@ private fb: FormBuilder  = new FormBuilder();
     console.log('Cadastro de pessoa');
     if(this.key){
       this.personService.update(person, this.key);
+      this.router.navigateByUrl('/person');
     } else  {
       this.personService.insert(person);
       //console.log(this.personForm.value);
