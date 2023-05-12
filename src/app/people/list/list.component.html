@@ -1,2 +1,66 @@
-<p>list works!</p>
-<app-edit></app-edit>
+<router-outlet>
+  <p-table
+  #dt1
+  [value]="persons"
+  dataKey="id"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+  >
+  <ng-template pTemplate="caption">
+        <div class="flex">
+          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text"  placeholder="Search keyword" />
+          </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="min-width:15rem">
+          <div class="flex align-items-center">
+            Name
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width:15rem">
+          <div class="flex align-items-center">
+            Age
+            <p-columnFilter type="number" field="age" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width:15rem">
+          <div class="flex align-items-center">
+            Phone
+            <p-columnFilter type="text" field="phone" display="menu"></p-columnFilter>
+          </div>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-person>
+        <tr>
+          <td>
+            {{ person.name }}
+          </td>
+
+          <td>
+            {{ person.age }}
+          </td>
+
+          <td>
+            {{ person.phone }}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">No Person found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </router-outlet>

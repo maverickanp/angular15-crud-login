@@ -5,6 +5,7 @@ import { InputText } from 'primeng/inputtext';
 import { Panel } from 'primeng/panel';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +21,24 @@ export class LoginComponent implements OnInit{
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+  }
+
+  isLoggedin(){
+    return this.authService.isLoggedIn();
   }
 
   loginWithGoogle() {
     this.authService.signInWithGoogle().then((res: any) => {
       this.router.navigateByUrl('/home');
+    }).catch((error: any) => {
+      console.log(error);
+    });
+  }
+  logOut() {
+    this.authService.logout().then((res: any) => {
+      this.router.navigateByUrl('/login');
     }).catch((error: any) => {
       console.log(error);
     });

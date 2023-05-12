@@ -6,13 +6,13 @@ import { Person } from './person';
   providedIn: 'root'
 })
 export class PersonDataService {
-  private peopleSource = new BehaviorSubject({person: new Person(), key: ''});
-  currentPerson = this.peopleSource.asObservable();
+  private personSource = new BehaviorSubject({person: new Person(), key: ''});
+  currentPerson = this.personSource.asObservable();
 
   constructor() { }
 
   changePerson(person: Person, key: string) {
-    this.peopleSource.next(
+    this.personSource.next(
       {person: person, key: key}
     );
   }

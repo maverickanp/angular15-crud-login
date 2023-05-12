@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Person } from '../shared/person';
 import { PersonService } from '../shared/person.service';
 import { PersonDataService } from '../shared/person-data.service';
+
 
 @Component({
   selector: 'app-edit',
@@ -9,26 +11,64 @@ import { PersonDataService } from '../shared/person-data.service';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit{
-  person: Person = new Person();
+private fb: FormBuilder  = new FormBuilder();
+
+  personForm = this.fb.group({
+    name: ['', Validators.required],
+    age: [0],
+    phone: [''],
+  });
+
+  person: Person = {
+    name: '',
+    age: 0,
+    phone: '',
+  };
   key: string = '';
 
   constructor(private personService: PersonService, private personDataService: PersonDataService) { }
 
+
+
   ngOnInit(): void {
     this.person = new Person();
+    this.personDataService.currentPerson.subscribe(data => {
+      if(data.person && data.key){
+        this.person = new Person();
+        this.person.name = data.person.name;
+        this.person.age = data.person.age;
+        this.person.phone = data.person.phone;
+        this.key = data.key;
+      }
+    })
   }
 
   onSubmit(){
     console.log('this.key:',this.key)
-    if(this.key){
-      this.personService.update(this.person, this.key);
-    }else {
-      this.personService.insert(this.person);
-    }
+    // if(this.key){
+    //   this.personService.update(this.person, this.key);
+    // }else {
+    //   this.personService.insert(this.person);
+    // }
 
-    this.person = new Person();
+    const person = new Person();
+    person.name = this.personForm.value.name!;
+    person.age = this.personForm.value.age!;
+    person.phone = this.personForm.value.phone!;
+    //this.person.name = this.personForm.get('name')?.value;
+
+    // this.person.name = this.personForm.get('name')?.value;
+//     this.personForm['name'].value;
+// this.personForm.value || '';
+// this.personForm.value || '';
+
     console.log('Cadastro de pessoa');
-    console.log(this.person);
+    if(this.key){
+      this.personService.update(person, this.key);
+    } else  {
+      this.personService.insert(person);
+      //console.log(this.personForm.value);
+    }
   }
 
 }

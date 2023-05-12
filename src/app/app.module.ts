@@ -6,7 +6,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
 import { LoginComponent } from './views/login/login.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -31,7 +35,11 @@ import { ListComponent } from './people/list/list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    TableModule,
     ButtonModule,
+    CardModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule

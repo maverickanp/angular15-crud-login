@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AuthService {
 
+
   constructor(private afs: AngularFireAuth) { }
 
   signInWithGoogle() {
@@ -14,5 +15,15 @@ export class AuthService {
   }
   logout() {
     return this.afs.signOut();
+  }
+  isLoggedIn() {
+    return true;
+    // return this.afs.authState.forEach((user: any) => {
+    //   if (user) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // });
   }
 }

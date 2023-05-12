@@ -9,6 +9,6 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
   title = 'angular15-crud-login';
   constructor() {
-    //console.log(environment.firebaseConfig.apiKey);
+    // console.log(environment.firebaseConfig.apiKey);
   }
 }
