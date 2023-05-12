@@ -17,7 +17,7 @@
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value , 'contains')" placeholder="Search keyword" />
-            <button pButton label="Nova Pessoa" class="p-button-outlined" icon="pi pi-add" disabled ></button>
+            <button pButton label="Nova Pessoa" class="p-button-outlined" icon="pi pi-add" [routerLink]="['/person/edit']" ></button>
           </span>
         </div>
     </ng-template>

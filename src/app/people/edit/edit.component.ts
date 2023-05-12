@@ -22,8 +22,7 @@ private fb: FormBuilder  = new FormBuilder();
   person: Person = {
     name: '',
     age: 0,
-    phone: '',
-    key: '',
+    phone: ''
   };
   key: string = '';
 
@@ -46,7 +45,6 @@ private fb: FormBuilder  = new FormBuilder();
         this.person.name = data.person.name;
         this.person.age = data.person.age;
         this.person.phone = data.person.phone;
-        this.key = data.key;
       }
     })
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -62,16 +60,17 @@ private fb: FormBuilder  = new FormBuilder();
     person.name = this.personForm.value.name!;
     person.age = this.personForm.value.age!;
     person.phone = this.personForm.value.phone!;
-    person.key = this.key;
 
     console.log('Cadastro de pessoa');
     if(this.key){
       this.personService.update(person, this.key);
+      this.router.navigateByUrl('/person');
     } else  {
       this.personService.insert(person);
       //console.log(this.personForm.value);
+      this.router.navigateByUrl('/person');
+
     }
-    this.router.navigateByUrl('/person');
   }
 
   remove(){

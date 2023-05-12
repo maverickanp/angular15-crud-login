@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'person/edit', component: EditComponent },
   { path: 'person/edit/:key', component: EditComponent }
 
+
 ];
 
 @NgModule({
