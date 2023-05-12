@@ -67,11 +67,11 @@ private fb: FormBuilder  = new FormBuilder();
     console.log('Cadastro de pessoa');
     if(this.key){
       this.personService.update(person, this.key);
-      this.router.navigateByUrl('/person');
     } else  {
       this.personService.insert(person);
       //console.log(this.personForm.value);
     }
+    this.router.navigateByUrl('/person');
   }
 
   remove(){
