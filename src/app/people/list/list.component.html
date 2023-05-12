@@ -9,14 +9,15 @@
   [loading]="loading"
   [paginator]="true"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+  [globalFilterFields]="['name', 'age', 'phone']"
   >
   <ng-template pTemplate="caption">
         <div class="flex">
           <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
-            <input pInputText type="text"  placeholder="Search keyword" />
+            <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 'contains')" placeholder="Search keyword" />
+
           </span>
         </div>
     </ng-template>

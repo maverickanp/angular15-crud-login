@@ -17,13 +17,13 @@ export class AuthService {
     return this.afs.signOut();
   }
   isLoggedIn() {
-    return true;
-    // return this.afs.authState.forEach((user: any) => {
-    //   if (user) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
+    return this.afs.authState.forEach((user: any) => {
+      if (user) {
+        console.log('user is logged in:', user.name);
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 }

@@ -31,7 +31,11 @@ export class PersonService {
       .snapshotChanges()
       .pipe(
         map(changes => {
-          return changes.map(_ => ({ key: _.payload.key, ..._.payload.val() as {} }));
+          return changes.map(_ => ({ key: _.payload.key, ..._.payload.val() as {
+            name: string;
+            age: number;
+            phone: string;
+          } }));
         })
       );
   }

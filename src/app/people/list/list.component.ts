@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Person } from '../shared/person';
 import { PersonService } from '../shared/person.service';
 import { Table } from 'primeng/table';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -9,22 +10,31 @@ import { Table } from 'primeng/table';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit{
-  persons: Person[] = [];
+  persons: any[] = [] as any;
+
 
   loading: boolean = false;
 
   constructor(private customerService: PersonService) {}
 
   ngOnInit() {
-    this.customerService.getAll().subscribe((customers) => {
-      console.log(customers);
+    this.customerService.getAll().subscribe((persons) => {
+      this.persons = persons.map((person) => {
+        return {
+          name: person.name,
+          age: person.age,
+          phone: person.phone,
+        };
+      });
+
+      console.log(persons);
     });
   }
 
 
   clear(table: Table) {
     table.clear();
-}
+  }
   load() {
       this.loading = true;
 
