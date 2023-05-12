@@ -37,8 +37,9 @@ private fb: FormBuilder  = new FormBuilder();
 
   ngOnInit(): void {
     this.person = new Person();
-    this.person = this.personService.getOne(this.key) as any;
-    console.log('this.person:',this.person);
+
+
+    console.log('this.people:',this.person);
     this.personDataService.currentPerson.subscribe(data => {
       if(data.person && data.key){
         this.person = new Person();
@@ -71,6 +72,11 @@ private fb: FormBuilder  = new FormBuilder();
       this.personService.insert(person);
       //console.log(this.personForm.value);
     }
+  }
+
+  remove(){
+    this.personService.delete(this.key);
+    this.router.navigateByUrl('/person');
   }
 
 }
