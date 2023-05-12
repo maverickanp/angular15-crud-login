@@ -3,6 +3,9 @@ import { Person } from '../shared/person';
 import { PersonService } from '../shared/person.service';
 import { Table } from 'primeng/table';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,12 +13,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit{
-  persons: any[] = [] as any;
-
+  persons: any[] = [];
 
   loading: boolean = false;
 
-  constructor(private customerService: PersonService) {}
+  constructor(private customerService: PersonService, private router: Router) {}
 
   ngOnInit() {
     this.customerService.getAll().subscribe((persons) => {
@@ -24,17 +26,17 @@ export class ListComponent implements OnInit{
           name: person.name,
           age: person.age,
           phone: person.phone,
+          key: person.key,
         };
       });
 
       console.log(persons);
     });
   }
-
-
   clear(table: Table) {
     table.clear();
   }
+
   load() {
       this.loading = true;
 

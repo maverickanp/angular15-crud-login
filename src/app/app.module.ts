@@ -8,6 +8,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
@@ -38,6 +39,7 @@ import { ListComponent } from './people/list/list.component';
     InputTextModule,
     ReactiveFormsModule,
     TableModule,
+    BrowserAnimationsModule,
     ButtonModule,
     CardModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

@@ -26,6 +26,24 @@ export class PersonService {
       });
   }
 
+  getOne(key: string){
+    return this.db.database.ref('/person').get().then(
+      (snapshot) => {
+        if(snapshot.exists()){
+          console.log('snapshot:',snapshot.val());
+          return snapshot.val();
+        } else {
+          console.log('No data available');
+        }
+      }
+    ).catch(
+      (error) => {
+        console.error(error);
+    }
+    );
+
+  }
+
   getAll(){
     return this.db.list('person')
       .snapshotChanges()
