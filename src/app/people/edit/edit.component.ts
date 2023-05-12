@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Person } from '../shared/person';
 import { PersonService } from '../shared/person.service';
 import { PersonDataService } from '../shared/person-data.service';
+import { ActivatedRoute, ParamMap  } from '@angular/router'
 
 
 @Component({
@@ -23,15 +24,17 @@ private fb: FormBuilder  = new FormBuilder();
     name: '',
     age: 0,
     phone: '',
+    key: '',
   };
   key: string = '';
 
-  constructor(private personService: PersonService, private personDataService: PersonDataService) { }
-
+  constructor(private personService: PersonService, private personDataService: PersonDataService,private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
     this.person = new Person();
+    this.person = this.personService.getOne(this.key) as any;
+    console.log('this.person:',this.person);
     this.personDataService.currentPerson.subscribe(data => {
       if(data.person && data.key){
         this.person = new Person();
@@ -41,26 +44,20 @@ private fb: FormBuilder  = new FormBuilder();
         this.key = data.key;
       }
     })
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      console.log('params:',params)
+      this.key = this.route.snapshot.paramMap.get('key') || '';
+    })
   }
 
   onSubmit(){
     console.log('this.key:',this.key)
-    // if(this.key){
-    //   this.personService.update(this.person, this.key);
-    // }else {
-    //   this.personService.insert(this.person);
-    // }
 
     const person = new Person();
     person.name = this.personForm.value.name!;
     person.age = this.personForm.value.age!;
     person.phone = this.personForm.value.phone!;
-    //this.person.name = this.personForm.get('name')?.value;
-
-    // this.person.name = this.personForm.get('name')?.value;
-//     this.personForm['name'].value;
-// this.personForm.value || '';
-// this.personForm.value || '';
+    person.key = this.key;
 
     console.log('Cadastro de pessoa');
     if(this.key){

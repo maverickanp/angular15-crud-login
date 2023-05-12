@@ -20,7 +20,7 @@ const routes: Routes = [
     component:HomeComponent
   },
   { path: 'person', component: ListComponent },
-  { path: 'person/edit', component: EditComponent }
+  { path: 'person/edit/:key', component: EditComponent }
 
 ];
 
