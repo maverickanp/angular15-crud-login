@@ -17,10 +17,10 @@ export class ListComponent implements OnInit{
 
   loading: boolean = false;
 
-  constructor(private customerService: PersonService, private router: Router) {}
+  constructor(private personService: PersonService, private router: Router) {}
 
   ngOnInit() {
-    this.customerService.getAll().subscribe((persons) => {
+    this.personService.getAll().subscribe((persons) => {
       this.persons = persons.map((person) => {
         return {
           name: person.name,
@@ -35,6 +35,10 @@ export class ListComponent implements OnInit{
   }
   clear(table: Table) {
     table.clear();
+  }
+
+  insert(){
+    this.router.navigateByUrl('/person/edit');
   }
 
   load() {
