@@ -1,23 +1,26 @@
 <router-outlet>
-  <p-card styleClass="person-form" class="flex justify-content-center ">
+  <div class="card flex justify-content-center">
     <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <div class="field">
-          <label for="name" class="block">Nome</label>
-          <input type="text" pInputText placeholder="Nome" formControlName="name"/>
-          <small class="p-error block" *ngIf="personForm.get('name')?.invalid && personForm.get('name')?.dirty">Nome necessario</small>
-        </div>
-        <div class="field">
-          <label for="name" class="block">Idade</label>
-          <input type="number" pInputText placeholder="Idade" formControlName="age"/>
-        </div>
-        <div class="field">
-          <label for="name" class="block">Telefone</label>
-          <input type="string" pInputText placeholder="Telefone" formControlName="phone"/>
-        </div>
+      <div class="form-group justify-content-center">
+        <p-card [style]="{ width: '360px' }">
+            <ng-template pTemplate="header">
+              <label for="name" class="block">Nome</label>
+              <input type="text" pInputText placeholder="Nome" formControlName="name"/>
+              <small class="p-error block" *ngIf="personForm.get('name')?.invalid && personForm.get('name')?.dirty">Nome necessario</small>
+            </ng-template>
+            <div class="field">
+              <label for="name" class="block">Idade</label>
+              <input type="number" pInputText placeholder="Idade" formControlName="age"/>
+            </div>
+            <div class="field">
+              <label for="name" class="block">Telefone</label>
+              <input type="string" pInputText placeholder="Telefone" formControlName="phone"/>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton type="submit" label="Submit" icon="pi pi-check" [disabled]="personForm.invalid"></button>
+                <p-button label="Remove" icon="pi pi-trash" (onClick)="remove()" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+            </ng-template>
+        </p-card>
       </div>
-
-      <button pButton type="submit" label="Submit" [disabled]="personForm.invalid"></button>
-    </form>
-  </p-card>
-</router-outlet>
+  </form>
+</div>
