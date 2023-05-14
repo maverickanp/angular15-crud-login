@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 })
 export class LoginComponent implements OnInit{
 
-
   isAuthenticated: any = false;
   userStatus: boolean = false;
 
