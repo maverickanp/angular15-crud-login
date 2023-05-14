@@ -1,11 +1,16 @@
 <!-- Toolbar -->
-<div className="navBar flex justify-between items-center p-[0.5rem] pr-[3rem] mb-10">
-  <div className="logoDiv">
-    <p className="titulo-navbar-top">Angular15 crud Login</p>
-  </div>
-  <div className="menu flex gap-4 items-center">
-    <li className="text-[#6f6f6f] text-[14px]">
-      Bem vindo! {{user.email}}
-    </li>
-  </div>
+<div class="card">
+  <p-menubar [model]="items">
+      <ng-template pTemplate="start">
+          <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" />
+          <img src="https://i1.wp.com/www.primefaces.org/wp-content/uploads/2021/11/angular-cx@2x.png" height="40" class="mr-2" />
+      </ng-template>
+      <ng-template pTemplate="end">
+        <div class="flex" *ngIf="(authService.afs.authState | async)">
+          <p-image src={{isAuthenticated?.photoURL}} alt="Image" width="40" [preview]="true"></p-image>
+          <p class="w-full" >{{isAuthenticated?.displayName}}</p>
+          <button class="w-full" pButton type="button" *ngIf="(authService.afs.authState | async)" (click)="signOut()">Sign-Out</button>
+        </div>
+      </ng-template>
+  </p-menubar>
 </div>

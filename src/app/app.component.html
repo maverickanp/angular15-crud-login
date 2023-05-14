@@ -1,7 +1,11 @@
-<div className="box-content bg-gray">
+<div className="flex w-full">
   <app-header></app-header>
-  <router-outlet>
-  </router-outlet>
+  <div className="content flex-col justify-center items-center mb-10">
+    <div className="w-full px-4 py-5">
+      <router-outlet>
+      </router-outlet>
+    </div>
+  </div>
   <app-footer></app-footer>
 </div>
 

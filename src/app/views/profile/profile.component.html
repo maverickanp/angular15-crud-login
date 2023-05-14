@@ -1,0 +1,18 @@
+<div class="card flex justify-content-center mb-4">
+  <div class="form-group justify-content-center">
+    <h2>User Profile</h2>
+    <div class="card flex justify-content-center">
+      <p-card header={{isAuthenticated.displayName}} subheader={{isAuthenticated?.email}} [style]="{ width: '360px' }">
+          <ng-template pTemplate="header">
+              <p-image src={{isAuthenticated?.photoURL}} alt="Avatar" [preview]="true"></p-image>
+          </ng-template>
+          <p>
+              perfil de {{isAuthenticated.displayName}}
+          </p>
+          <ng-template pTemplate="footer">
+            <label icon="pi pi-check" for="verificado">Verificado</label>
+          </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

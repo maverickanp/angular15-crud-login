@@ -4,6 +4,8 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { ListComponent } from './people/list/list.component';
 import { EditComponent } from './people/edit/edit.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,9 +21,12 @@ const routes: Routes = [
     path: 'home',
     component:HomeComponent
   },
-  { path: 'person', component: ListComponent },
-  { path: 'person/edit', component: EditComponent },
-  { path: 'person/edit/:key', component: EditComponent }
+  { path: 'person', component: ListComponent, canActivate: [AuthGuard] },
+  { path: 'person/edit', component: EditComponent, canActivate: [AuthGuard] },
+  { path: 'person/edit/:key', component: EditComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]
+ },
+
 
 
 ];

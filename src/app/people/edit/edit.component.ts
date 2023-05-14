@@ -12,6 +12,7 @@ import { ActivatedRoute, ParamMap, Router  } from '@angular/router'
 })
 export class EditComponent implements OnInit{
 private fb: FormBuilder  = new FormBuilder();
+loading: boolean = false;
 
   personForm = this.fb.group({
     name: ['', Validators.required],
@@ -37,8 +38,6 @@ private fb: FormBuilder  = new FormBuilder();
   ngOnInit(): void {
     this.person = new Person();
 
-
-    console.log('this.people:',this.person);
     this.personDataService.currentPerson.subscribe(data => {
       if(data.person && data.key){
         this.person = new Person();
@@ -47,6 +46,7 @@ private fb: FormBuilder  = new FormBuilder();
         this.person.phone = data.person.phone;
       }
     })
+    console.log('this.people:',this.person);
     this.route.paramMap.subscribe((params: ParamMap) => {
       console.log('params:',params)
       this.key = this.route.snapshot.paramMap.get('key') || '';
@@ -64,18 +64,26 @@ private fb: FormBuilder  = new FormBuilder();
     console.log('Cadastro de pessoa');
     if(this.key){
       this.personService.update(person, this.key);
-      this.router.navigateByUrl('/person');
     } else  {
       this.personService.insert(person);
       //console.log(this.personForm.value);
-      this.router.navigateByUrl('/person');
-
     }
+    this.router.navigateByUrl('/person');
   }
 
   remove(){
     this.personService.delete(this.key);
     this.router.navigateByUrl('/person');
+  }
+
+
+  load() {
+      this.loading = true;
+
+      setTimeout(() => {
+          this.loading = false
+          this.onSubmit();
+      }, 2000);
   }
 
 }

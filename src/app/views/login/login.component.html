@@ -1,14 +1,16 @@
-<p>login works!</p>
-
-<div class="container" style="max-width: 550px">
-  <h2 class="text-center mb-5">Angular Login with Google</h2>
-  <div>
-    <div>
-      <button type="button" pButton label="login" (click)="loginWithGoogle()"></button>
+<div class="container">
+  <div class="text-center mb-5">
+    <div class="relative card-container orange-container md:p-5">
+      <h2 class="text-center mb-5">Angular Login with Google</h2>
+      <router-outlet>
+        <div class="static bg-orange-100 font-bold text-gray-900 border-round p-4" style="min-width: 300px; min-height: 200px;">
+          <h1 *ngIf="(authService.afs.authState | async)">Usuario logado como: {{isAuthenticated?.displayName}}</h1>
+          <div class="action-buttons-container">
+            <button pButton type="button" *ngIf="(authService.afs.authState | async) === null" (click)="loginWithGoogle()">Sign-In with Google</button>
+            <!-- <button pButton type="button" *ngIf="(authService.afs.authState | async)" (click)="logOut()">Sign-Out</button> -->
+          </div>
+        </div>
+      </router-outlet>
     </div>
-  </div>
-  <div>
-    <button pButton type="button" label="Logout" (click)="logOut()"></button>
-
   </div>
 </div>

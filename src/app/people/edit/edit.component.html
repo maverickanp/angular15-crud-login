@@ -1,25 +1,26 @@
-<router-outlet>
-  <div class="card flex justify-content-center">
+  <div class="card flex justify-content-center mb-4">
     <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
       <div class="form-group justify-content-center">
+        <h2>{{key? 'Editar' : 'Adicionar'}} Pessoa</h2>
         <p-card [style]="{ width: '360px' }">
-            <ng-template pTemplate="header">
-              <label for="name" class="block">Nome</label>
-              <input type="text" pInputText placeholder="Nome" formControlName="name"/>
-              <small class="p-error block" *ngIf="personForm.get('name')?.invalid && personForm.get('name')?.dirty">Nome necessario</small>
-            </ng-template>
-            <div class="field">
-              <label for="name" class="block">Idade</label>
-              <input type="number" pInputText placeholder="Idade" formControlName="age"/>
-            </div>
-            <div class="field">
-              <label for="name" class="block">Telefone</label>
-              <input type="string" pInputText placeholder="Telefone" formControlName="phone"/>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton type="submit" label="Submit" icon="pi pi-check" [disabled]="personForm.invalid"></button>
-                <p-button label="Remove" icon="pi pi-trash" (onClick)="remove()" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-            </ng-template>
+          <div class="field">
+            <input class="w-full" type="text" pInputText placeholder="Nome" formControlName="name"/>
+            <small class="p-error block" *ngIf="personForm.get('name')?.invalid && personForm.get('name')?.dirty">Nome obrigatório</small>
+          </div>
+          <div class="field">
+            <label for="idade" class="block">Idade</label>
+            <input class="w-full" [value]="personForm.get('age')" type="number" pInputText placeholder="Idade" formControlName="age"/>
+          </div>
+          <div class="field">
+            <label for="phone" class="block">Telefone</label>
+            <input mask="(99)99999-9999" pInputMas class="w-full" type="string" pInputText  placeholder="(99)99999-9999" formControlName="phone"/>
+          </div>
+          <ng-template pTemplate="footer">
+            <p-button [loading]="loading" label="Submit" (click)="load()" icon="pi pi-check"
+              [disabled]="personForm.invalid" styleClass="p-button-primary mb-4" [style]="{ 'width': '100%' }">
+            </p-button>
+            <p-button label="Remove" icon="pi pi-trash" (onClick)="remove()" styleClass="p-button-secondary" [style]="{ 'width': '100%' }"></p-button>
+          </ng-template>
         </p-card>
       </div>
   </form>

@@ -13,13 +13,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit{
+  isAuthenticated: any = false;
+
   persons: any[] = [];
 
   loading: boolean = false;
 
-  constructor(private personService: PersonService, private router: Router) {}
+  constructor(public authService: AuthService, private personService: PersonService, private router: Router) {}
 
   ngOnInit() {
+    this.authService.currentAuthStatus.subscribe(authStatus => this.isAuthenticated = authStatus);
     this.personService.getAll().subscribe((persons) => {
       this.persons = persons.map((person) => {
         return {
@@ -30,7 +33,7 @@ export class ListComponent implements OnInit{
         };
       });
 
-      console.log(persons);
+      console.log('list people:',persons);
     });
   }
   clear(table: Table) {

@@ -1,17 +1,20 @@
-<div class="p-container mt-5 mb-5" role="main">
-
-  <h1>Angular Router App</h1>
-<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <li><a href="/person">Person</a></li>
-  </ul>
-</nav>
-<!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
-
-
-  <button pButton type="button" label="Logout" (click)="signOut()"></button>
-
-
+<div class="container">
+  <div class="text-center mb-5">
+    <div class="relative card-container orange-container md:p-5">
+      <h2 class="text-center mb-5">Angular Login with Google</h2>
+      <router-outlet>
+        <div class="static bg-orange-100 font-bold text-gray-900 border-round p-4" style="min-width: 300px; min-height: 200px;">
+          <p>Home</p>
+          <div class="action-buttons-container">
+            <p>texto qualquer da home</p>
+            <nav>
+              <ul>
+                <button pButton label="Pessoa" class="p-button-outlined" icon="pi pi-add" [routerLink]="['/person']" ></button>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </router-outlet>
+    </div>
+  </div>
 </div>
