@@ -5,6 +5,7 @@
       <router-outlet>
         <div class="static bg-orange-100 font-bold text-gray-900 border-round p-4" style="min-width: 300px; min-height: 200px;">
           <h1 *ngIf="(authService.afs.authState | async)">Usuario logado como: {{isAuthenticated?.displayName}}</h1>
+          <h5 *ngIf="(authService.afs.authState | async)">Email: {{isAuthenticated?.email}}</h5>
           <div class="action-buttons-container">
             <button pButton type="button" *ngIf="(authService.afs.authState | async) === null" (click)="loginWithGoogle()">Sign-In with Google</button>
             <!-- <button pButton type="button" *ngIf="(authService.afs.authState | async)" (click)="logOut()">Sign-Out</button> -->

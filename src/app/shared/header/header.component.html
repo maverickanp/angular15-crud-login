@@ -6,9 +6,9 @@
           <img src="https://i1.wp.com/www.primefaces.org/wp-content/uploads/2021/11/angular-cx@2x.png" height="40" class="mr-2" />
       </ng-template>
       <ng-template pTemplate="end">
-        <div class="flex" *ngIf="(authService.afs.authState | async)">
-          <p-image src={{isAuthenticated?.photoURL}} alt="Image" width="40" [preview]="true"></p-image>
-          <p class="w-full" >{{isAuthenticated?.displayName}}</p>
+        <div class="flex items-center" *ngIf="(authService.afs.authState | async)">
+          <img src={{isAuthenticated?.photoURL}}  alt={{isAuthenticated?.displayName}} class="h-4rem w-4rem border-circle mr-4"/>
+          <!-- <p class="w-full" >{{isAuthenticated?.displayName}}</p> -->
           <button class="w-full" pButton type="button" *ngIf="(authService.afs.authState | async)" (click)="signOut()">Sign-Out</button>
         </div>
       </ng-template>

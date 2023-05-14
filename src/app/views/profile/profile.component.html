@@ -4,13 +4,16 @@
     <div class="card flex justify-content-center">
       <p-card header={{isAuthenticated.displayName}} subheader={{isAuthenticated?.email}} [style]="{ width: '360px' }">
           <ng-template pTemplate="header">
-              <p-image src={{isAuthenticated?.photoURL}} alt="Avatar" [preview]="true"></p-image>
+            <div class="w-full bg-blue-300">
+              <p-image src={{isAuthenticated?.photoURL}} alt="Avatar" [preview]="true" class="m-1"></p-image>
+            </div>
           </ng-template>
           <p>
               perfil de {{isAuthenticated.displayName}}
           </p>
           <ng-template pTemplate="footer">
-            <label icon="pi pi-check" for="verificado">Verificado</label>
+            <label for="verificado">Verificado</label>
+            <i class="pi pi-check" style="color: slateblue"></i>
           </ng-template>
       </p-card>
     </div>
