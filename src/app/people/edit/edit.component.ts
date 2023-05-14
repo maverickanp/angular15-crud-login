@@ -46,10 +46,15 @@ loading: boolean = false;
         this.person.phone = data.person.phone;
       }
     })
-    console.log('this.people:',this.person);
     this.route.paramMap.subscribe((params: ParamMap) => {
       console.log('params:',params)
       this.key = this.route.snapshot.paramMap.get('key') || '';
+      this.person.name = this.route.snapshot.paramMap.get('name') || '';
+      this.person.age = Number(this.route.snapshot.paramMap.get('age')) || 0;
+      this.person.phone = this.route.snapshot.paramMap.get('phone') || '';
+      this.personForm.get('name')?.setValue(this.person.name);
+      this.personForm.get('age')?.setValue(this.person.age);
+      this.personForm.get('phone')?.setValue(this.person.phone);
     })
   }
 
@@ -75,7 +80,6 @@ loading: boolean = false;
     this.personService.delete(this.key);
     this.router.navigateByUrl('/person');
   }
-
 
   load() {
       this.loading = true;

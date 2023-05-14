@@ -40,10 +40,6 @@ export class ListComponent implements OnInit{
     table.clear();
   }
 
-  insert(){
-    this.router.navigateByUrl('/person/edit');
-  }
-
   load() {
       this.loading = true;
 
